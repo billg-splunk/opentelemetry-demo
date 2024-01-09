@@ -37,17 +37,10 @@ agent:
             value: postgres
             action: upsert
 
-    connectors:
-      spanmetrics:
-      
     service:
       pipelines:
-        metrics:
-          exporters: [signalfx]
-          processors: [memory_limiter, batch, resourcedetection, resource]
-          receivers: [hostmetrics, kubeletstats, otlp, receiver_creator, signalfx, spanmetrics]
         traces:
-          exporters: [sapm, signalfx, spanmetrics]
+          exporters: [sapm, signalfx]
           processors: [memory_limiter, k8sattributes, batch, resourcedetection, resource, resource/add_environment, attributes/postgres]
           receivers: [otlp, smartagent/signalfx-forwarder]
 
