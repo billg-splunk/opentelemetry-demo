@@ -1,0 +1,80 @@
+agent:
+  extraEnvs:
+  - name: WORKSHOP_ENVIRONMENT
+    valueFrom:
+      secretKeyRef:
+        name: workshop-secret
+        key: env
+  config:
+    receivers:
+      receiver_creator:
+        receivers:
+          smartagent/redis:
+            rule: type == "port" && name matches "redis"
+            config:
+              type: collectd/redis
+              endpoint: '`endpoint`'
+              port: 6379
+              extraDimensions:
+                service.name: "redis-${WORKSHOP_ENVIRONMENT}"
+          postgresql:
+            rule: type == "pod" && name matches "ffspostgres"
+            config:
+              endpoint: '`endpoint`:5432'
+              username: ffs
+              password: ffs
+              databases: [ffs]
+              tls:
+                insecure: true
+    processors:
+      attributes/postgres:
+        include:
+          match_type: strict
+          services:
+            - featureflagservice
+        actions:
+          - key: db.type
+            value: postgres
+            action: upsert
+
+    connectors:
+      spanmetrics:
+      
+    service:
+      pipelines:
+        metrics:
+          exporters: [signalfx]
+          processors: [memory_limiter, batch, resourcedetection, resource]
+          receivers: [hostmetrics, kubeletstats, otlp, receiver_creator, signalfx, spanmetrics]
+        traces:
+          exporters: [sapm, signalfx, spanmetrics]
+          processors: [memory_limiter, k8sattributes, batch, resourcedetection, resource, resource/add_environment, attributes/postgres]
+          receivers: [otlp, smartagent/signalfx-forwarder]
+
+clusterReceiver:
+  k8sObjects:
+    - name: events
+      mode: watch
+      namespaces: [default, otel-demo]
+    - name: pods
+      mode: watch
+      namespaces: [default, otel-demo]
+
+logsCollection:
+  extraFileLogs:
+    filelog/syslog:
+      include: [/var/log/syslog]
+      include_file_path: true
+      include_file_name: false
+      resource:
+        com.splunk.source: /var/log/syslog
+        host.name: 'EXPR(env("K8S_NODE_NAME"))'
+        com.splunk.sourcetype: syslog
+    filelog/auth_log:
+      include: [/var/log/auth.log]
+      include_file_path: true
+      include_file_name: false
+      resource:
+        com.splunk.source: /var/log/auth.log
+        host.name: 'EXPR(env("K8S_NODE_NAME"))'
+        com.splunk.sourcetype: auth_log
