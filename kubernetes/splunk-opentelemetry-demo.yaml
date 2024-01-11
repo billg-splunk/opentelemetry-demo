@@ -460,6 +460,11 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: status.hostIP
+          - name: WORKSHOP_ENVIRONMENT
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: env
           - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
             value: cumulative
           - name: KAFKA_SERVICE_ADDR
@@ -467,7 +472,7 @@ spec:
           - name: OTEL_EXPORTER_OTLP_ENDPOINT
             value: http://$(OTEL_COLLECTOR_NAME):4317
           - name: OTEL_RESOURCE_ATTRIBUTES
-            value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo
+            value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,deployment.environment=${WORKSHOP_ENVIRONMENT}-workshop
           resources:
             limits:
               memory: 20Mi
@@ -527,6 +532,11 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: status.hostIP
+          - name: WORKSHOP_ENVIRONMENT
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: env
           - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
             value: cumulative
           - name: AD_SERVICE_PORT
@@ -538,7 +548,7 @@ spec:
           - name: OTEL_LOGS_EXPORTER
             value: otlp
           - name: OTEL_RESOURCE_ATTRIBUTES
-            value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo
+            value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,deployment.environment=${WORKSHOP_ENVIRONMENT}-workshop
           resources:
             limits:
               memory: 300Mi
@@ -590,6 +600,11 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: status.hostIP
+          - name: WORKSHOP_ENVIRONMENT
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: env
           - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
             value: cumulative
           - name: CART_SERVICE_PORT
@@ -603,7 +618,7 @@ spec:
           - name: OTEL_EXPORTER_OTLP_ENDPOINT
             value: http://$(OTEL_COLLECTOR_NAME):4317
           - name: OTEL_RESOURCE_ATTRIBUTES
-            value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo
+            value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,deployment.environment=${WORKSHOP_ENVIRONMENT}-workshop
           resources:
             limits:
               memory: 160Mi
@@ -663,6 +678,11 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: status.hostIP
+          - name: WORKSHOP_ENVIRONMENT
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: env
           - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
             value: cumulative
           - name: CHECKOUT_SERVICE_PORT
@@ -684,7 +704,7 @@ spec:
           - name: OTEL_EXPORTER_OTLP_ENDPOINT
             value: http://$(OTEL_COLLECTOR_NAME):4317
           - name: OTEL_RESOURCE_ATTRIBUTES
-            value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo
+            value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,deployment.environment=${WORKSHOP_ENVIRONMENT}-workshop
           resources:
             limits:
               memory: 20Mi
@@ -744,6 +764,11 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: status.hostIP
+          - name: WORKSHOP_ENVIRONMENT
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: env
           - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
             value: cumulative
           - name: CURRENCY_SERVICE_PORT
@@ -751,7 +776,7 @@ spec:
           - name: OTEL_EXPORTER_OTLP_ENDPOINT
             value: http://$(OTEL_COLLECTOR_NAME):4317
           - name: OTEL_RESOURCE_ATTRIBUTES
-            value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo
+            value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,deployment.environment=${WORKSHOP_ENVIRONMENT}-workshop
           resources:
             limits:
               memory: 20Mi
@@ -803,6 +828,11 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: status.hostIP
+          - name: WORKSHOP_ENVIRONMENT
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: env
           - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
             value: cumulative
           - name: EMAIL_SERVICE_PORT
@@ -812,7 +842,7 @@ spec:
           - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
             value: http://$(OTEL_COLLECTOR_NAME):4318/v1/traces
           - name: OTEL_RESOURCE_ATTRIBUTES
-            value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo
+            value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,deployment.environment=${WORKSHOP_ENVIRONMENT}-workshop
           resources:
             limits:
               memory: 100Mi
@@ -866,6 +896,11 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: status.hostIP
+          - name: WORKSHOP_ENVIRONMENT
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: env
           - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
             value: cumulative
           - name: FEATURE_FLAG_SERVICE_PORT
@@ -879,7 +914,7 @@ spec:
           - name: OTEL_EXPORTER_OTLP_TRACES_PROTOCOL
             value: grpc
           - name: OTEL_RESOURCE_ATTRIBUTES
-            value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo
+            value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,deployment.environment=${WORKSHOP_ENVIRONMENT}-workshop
           resources:
             limits:
               memory: 175Mi
@@ -945,6 +980,11 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: status.hostIP
+          - name: WORKSHOP_ENVIRONMENT
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: env
           - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
             value: cumulative
           - name: POSTGRES_DB
@@ -954,7 +994,7 @@ spec:
           - name: POSTGRES_PASSWORD
             value: ffs
           - name: OTEL_RESOURCE_ATTRIBUTES
-            value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo
+            value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,deployment.environment=${WORKSHOP_ENVIRONMENT}-workshop
           resources:
             limits:
               memory: 120Mi
@@ -1006,6 +1046,11 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: status.hostIP
+          - name: WORKSHOP_ENVIRONMENT
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: env
           - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
             value: cumulative
           - name: KAFKA_SERVICE_ADDR
@@ -1013,7 +1058,7 @@ spec:
           - name: OTEL_EXPORTER_OTLP_ENDPOINT
             value: http://$(OTEL_COLLECTOR_NAME):4317
           - name: OTEL_RESOURCE_ATTRIBUTES
-            value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo
+            value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,deployment.environment=${WORKSHOP_ENVIRONMENT}-workshop
           resources:
             limits:
               memory: 200Mi
@@ -1073,6 +1118,11 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: status.hostIP
+          - name: WORKSHOP_ENVIRONMENT
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: env
           - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
             value: cumulative
           - name: FRONTEND_PORT
@@ -1100,7 +1150,7 @@ spec:
           - name: PUBLIC_OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
             value: http://localhost:8080/otlp-http/v1/traces
           - name: OTEL_RESOURCE_ATTRIBUTES
-            value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo
+            value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,deployment.environment=${WORKSHOP_ENVIRONMENT}-workshop
           resources:
             limits:
               memory: 200Mi
@@ -1156,6 +1206,11 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: status.hostIP
+          - name: WORKSHOP_ENVIRONMENT
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: env
           - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
             value: cumulative
           - name: ENVOY_PORT
@@ -1187,7 +1242,7 @@ spec:
           - name: OTEL_COLLECTOR_HOST
             value: $(OTEL_COLLECTOR_NAME)
           - name: OTEL_RESOURCE_ATTRIBUTES
-            value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo
+            value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,deployment.environment=${WORKSHOP_ENVIRONMENT}-workshop
           resources:
             limits:
               memory: 50Mi
@@ -1245,6 +1300,11 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: status.hostIP
+          - name: WORKSHOP_ENVIRONMENT
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: env
           - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
             value: cumulative
           - name: KAFKA_ADVERTISED_LISTENERS
@@ -1254,7 +1314,7 @@ spec:
           - name: KAFKA_HEAP_OPTS
             value: -Xmx200M -Xms200M
           - name: OTEL_RESOURCE_ATTRIBUTES
-            value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo
+            value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,deployment.environment=${WORKSHOP_ENVIRONMENT}-workshop
           resources:
             limits:
               memory: 500Mi
@@ -1310,6 +1370,11 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: status.hostIP
+          - name: WORKSHOP_ENVIRONMENT
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: env
           - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
             value: cumulative
           - name: LOCUST_WEB_PORT
@@ -1329,7 +1394,7 @@ spec:
           - name: OTEL_EXPORTER_OTLP_ENDPOINT
             value: http://$(OTEL_COLLECTOR_NAME):4317
           - name: OTEL_RESOURCE_ATTRIBUTES
-            value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo
+            value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,deployment.environment=${WORKSHOP_ENVIRONMENT}-workshop
           resources:
             limits:
               memory: 120Mi
@@ -1381,6 +1446,11 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: status.hostIP
+          - name: WORKSHOP_ENVIRONMENT
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: env
           - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
             value: cumulative
           - name: PAYMENT_SERVICE_PORT
@@ -1388,7 +1458,7 @@ spec:
           - name: OTEL_EXPORTER_OTLP_ENDPOINT
             value: http://$(OTEL_COLLECTOR_NAME):4317
           - name: OTEL_RESOURCE_ATTRIBUTES
-            value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo
+            value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,deployment.environment=${WORKSHOP_ENVIRONMENT}-workshop
           resources:
             limits:
               memory: 120Mi
@@ -1444,6 +1514,11 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: status.hostIP
+          - name: WORKSHOP_ENVIRONMENT
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: env
           - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
             value: cumulative
           - name: PRODUCT_CATALOG_SERVICE_PORT
@@ -1453,7 +1528,7 @@ spec:
           - name: OTEL_EXPORTER_OTLP_ENDPOINT
             value: http://$(OTEL_COLLECTOR_NAME):4317
           - name: OTEL_RESOURCE_ATTRIBUTES
-            value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo
+            value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,deployment.environment=${WORKSHOP_ENVIRONMENT}-workshop
           resources:
             limits:
               memory: 20Mi
@@ -1505,6 +1580,11 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: status.hostIP
+          - name: WORKSHOP_ENVIRONMENT
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: env
           - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
             value: cumulative
           - name: QUOTE_SERVICE_PORT
@@ -1514,7 +1594,7 @@ spec:
           - name: OTEL_EXPORTER_OTLP_ENDPOINT
             value: http://$(OTEL_COLLECTOR_NAME):4318
           - name: OTEL_RESOURCE_ATTRIBUTES
-            value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo
+            value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,deployment.environment=${WORKSHOP_ENVIRONMENT}-workshop
           resources:
             limits:
               memory: 40Mi
@@ -1570,6 +1650,11 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: status.hostIP
+          - name: WORKSHOP_ENVIRONMENT
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: env
           - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
             value: cumulative
           - name: RECOMMENDATION_SERVICE_PORT
@@ -1585,7 +1670,7 @@ spec:
           - name: OTEL_EXPORTER_OTLP_ENDPOINT
             value: http://$(OTEL_COLLECTOR_NAME):4317
           - name: OTEL_RESOURCE_ATTRIBUTES
-            value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo
+            value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,deployment.environment=${WORKSHOP_ENVIRONMENT}-workshop
           resources:
             limits:
               memory: 500Mi
@@ -1637,10 +1722,15 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: status.hostIP
+          - name: WORKSHOP_ENVIRONMENT
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: env
           - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
             value: cumulative
           - name: OTEL_RESOURCE_ATTRIBUTES
-            value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo
+            value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,deployment.environment=${WORKSHOP_ENVIRONMENT}-workshop
           resources:
             limits:
               memory: 20Mi
@@ -1696,6 +1786,11 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: status.hostIP
+          - name: WORKSHOP_ENVIRONMENT
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: env
           - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
             value: cumulative
           - name: SHIPPING_SERVICE_PORT
@@ -1705,7 +1800,7 @@ spec:
           - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
             value: http://$(OTEL_COLLECTOR_NAME):4317/v1/traces
           - name: OTEL_RESOURCE_ATTRIBUTES
-            value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo
+            value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,deployment.environment=${WORKSHOP_ENVIRONMENT}-workshop
           resources:
             limits:
               memory: 20Mi
